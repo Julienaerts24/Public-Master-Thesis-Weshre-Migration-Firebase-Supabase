@@ -1,0 +1,29 @@
+Import auth/users:
+- cd auth
+- ts-node firebaseauth2json.ts weshare-ccc94 users_pro.json 
+- Remove manually the user "aXae0i0B29eti63fRdmFfM8jAAw2"
+- Remove the `{ "users": ... }` and only keep the array with user inside in users_pro.json
+- ts-node import_users.ts .\users_pro.json 200
+
+Import firestore data:
+- cd firestore
+- ts-node firestore2json.ts users 
+- Remove manually the user afc192b9-74fe-c7f8-6225-4d29dc0ae122
+- ts-node compute_user_delete_value.ts ..\auth\users_pro.json .\JSON_files\_users.json
+- ts-node json2supabase.ts "C:\Bureau\Universite\Master_2\TFE\weshre-mono-repo\apps\firebase-migration\firestore\JSON_files\_users.json" "uuid" "uid"
+- ts-node firestore2json.ts news 
+- ts-node json2supabase.ts "C:\Bureau\Universite\Master_2\TFE\weshre-mono-repo\apps\firebase-migration\firestore\JSON_files\_news.json" "uuid" "id"
+- ts-node firestore2json.ts groups
+- ts-node json2supabase.ts "C:\Bureau\Universite\Master_2\TFE\weshre-mono-repo\apps\firebase-migration\firestore\JSON_files\_group.json" "uuid" "group"
+- ts-node json2supabase.ts "C:\Bureau\Universite\Master_2\TFE\weshre-mono-repo\apps\firebase-migration\firestore\JSON_files\_group_members.json" "uuid" "group"
+- ts-node firestore2json.ts esn_coupons
+- ts-node json2supabase.ts "C:\Bureau\Universite\Master_2\TFE\weshre-mono-repo\apps\firebase-migration\firestore\JSON_files\_esn_coupon.json" "smallserial"
+
+- Some of the creator are not present in the user table: so remove them manually: 
+[
+"4f39012e-025c-2f4f-5efd-090b3ac3cf77",
+"442cfa0f-f77a-0044-348d-9bc0b050c81d",
+"18f482bf-86cf-564d-38be-61767fbbad7f",
+"2f261cb3-d58d-095d-784f-91d92d18526e",
+"2f8fec4d-7933-bcbc-79a2-a0dd99f72c32",
+] 
