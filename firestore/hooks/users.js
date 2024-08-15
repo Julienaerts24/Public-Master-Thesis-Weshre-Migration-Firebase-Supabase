@@ -22,7 +22,8 @@ module.exports = (collectionName, doc, recordCounters, writeRecord) => {
         stripe_customer_id: doc.customerId ? doc.customerId : null,
         stripe_connect_account_object: doc.stripeUser ? doc.stripeUser : null,
         stripe_connected_account: (doc.stripeUser && doc.stripeUser.id) ? doc.stripeUser.id : null,
-        deleted: false
+        deleted: false,
+        is_esn: doc.isEsn ? doc.isEsn : false,
     };
     writeRecord('_users', newsDoc, recordCounters);
     return undefined;
